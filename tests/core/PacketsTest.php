@@ -4,6 +4,7 @@
 namespace UltimaPHP\Tests\core;
 
 
+use Functions;
 use Packets;
 use PacketsDefs;
 use PHPUnit\Framework\TestCase;
@@ -47,5 +48,16 @@ class PacketsTest extends TestCase
         $sut->setLength($packetLength);
 
         self::assertSame($packetLength, $sut->getLength());
+    }
+
+    public function testAddText()
+    {
+        $text = "how do you do?";
+
+        $sut = new Packets();
+
+        $sut->addText($text);
+
+        self::assertSame("00" . Functions::strToHex($text), $sut->getPacketStr());
     }
 }
