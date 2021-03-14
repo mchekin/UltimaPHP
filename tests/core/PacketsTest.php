@@ -28,4 +28,24 @@ class PacketsTest extends TestCase
         self::assertSame($packetId, $sut->getPacket());
         self::assertSame($packetLength, $sut->getLength());
     }
+
+    public function testSetLengthWithoutLengthParameter()
+    {
+        $sut = new Packets();
+
+        $sut->setLength();
+
+        self::assertSame(-1, $sut->getLength());
+    }
+
+    public function testSetLength()
+    {
+        $packetLength = 7;
+
+        $sut = new Packets();
+
+        $sut->setLength($packetLength);
+
+        self::assertSame($packetLength, $sut->getLength());
+    }
 }
