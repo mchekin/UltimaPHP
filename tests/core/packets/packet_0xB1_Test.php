@@ -7,9 +7,9 @@ namespace UltimaPHP\Tests\core\packets;
 use packet_0xB1;
 use PHPUnit\Framework\TestCase;
 
-class packet_0xB1_test extends TestCase
+class packet_0xB1_Test extends TestCase
 {
-    public function testReceive()
+    public function testReceiveWithoutClient()
     {
         $sut = new packet_0xB1();
 
