@@ -71,4 +71,45 @@ class PacketsTest extends TestCase
 
         self::assertSame("00" . $hexString, $sut->getPacketStr());
     }
+
+    public function testAddHexStringWithFalseLength()
+    {
+        $hexString = "AA0068FFB2";
+
+        $sut = new Packets();
+
+        $sut->addHexStr($hexString);
+
+        $sut->setLength(false);
+
+        $hexPrefix = $this->getHexPrefix($hexString);
+
+        self::assertSame("00" . $hexPrefix . $hexString, $sut->getPacketStr());
+    }
+
+    public function testAddTextWithFalseLength()
+    {
+        $text = "What is going on?";
+
+        $sut = new Packets();
+
+        $sut->addText($text);
+
+        $sut->setLength(false);
+
+        $hexString = Functions::strToHex($text);
+        $hexPrefix = $this->getHexPrefix($hexString);
+
+        self::assertSame("00" . $hexPrefix . $hexString, $sut->getPacketStr());
+    }
+
+    private function getHexPrefix(string $hexString): string
+    {
+        return str_pad(
+                dechex((strlen($hexString) / 2) + 3),
+                4,
+                "0",
+                STR_PAD_LEFT
+            );
+    }
 }
