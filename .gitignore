@@ -14,3 +14,6 @@ tools/UltimaPHPGumpExporter/obj/x86/Release/build.force
 tools/UltimaPHPGumpExporter/obj/Debug/UltimaPHPExport.csprojAssemblyReference.cache
 tools/UltimaPHPGumpExporter/bin/
 tools/UltimaPHPGumpExporter/obj/
+
+/vendor/
+/.phpunit.result.cache

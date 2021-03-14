@@ -1,0 +1,19 @@
+{
+    "name": "ultima-php/ultima-php",
+    "description": "Ultima Online Server written in PHP",
+    "type": "project",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "classmap": [
+            "core",
+            "core/packets"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "UltimaPHP\\Tests\\": "tests/"
+        }
+    }
+}
