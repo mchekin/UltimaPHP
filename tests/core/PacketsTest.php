@@ -60,4 +60,15 @@ class PacketsTest extends TestCase
 
         self::assertSame("00" . Functions::strToHex($text), $sut->getPacketStr());
     }
+
+    public function testAddHexString()
+    {
+        $hexString = "AA0068FF";
+
+        $sut = new Packets();
+
+        $sut->addHexStr($hexString);
+
+        self::assertSame("00" . $hexString, $sut->getPacketStr());
+    }
 }
