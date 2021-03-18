@@ -103,6 +103,26 @@ class PacketsTest extends TestCase
         self::assertSame("00" . $hexPrefix . $hexString, $sut->getPacketStr());
     }
 
+    public function testInt8WithIntegerGetHexadecimalString()
+    {
+        self::assertSame('20', Packets::int8(32));
+    }
+
+    public function testInt8WithStringGetAsciiValueOfTheFirstCharacter()
+    {
+        self::assertSame(66, Packets::int8('Bold'));
+    }
+
+    public function testUInt8WithIntegerGetHexadecimalString()
+    {
+        self::assertSame('20', Packets::uInt8(32));
+    }
+
+    public function testUInt8WithStringGetAsciiValueOfTheFirstCharacter()
+    {
+        self::assertSame(66, Packets::uInt8('Bold'));
+    }
+
     private function getHexPrefix(string $hexString): string
     {
         return str_pad(
