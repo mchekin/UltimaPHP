@@ -123,6 +123,16 @@ class PacketsTest extends TestCase
         self::assertSame(66, Packets::uInt8('Bold'));
     }
 
+    public function testInt16WithIntegerGetHexadecimalString()
+    {
+        self::assertSame('0020', Packets::int16(32));
+    }
+
+    public function testInt16WithStringGetAsciiValueOfTheFirstTwoCharacters()
+    {
+        self::assertSame(28482, Packets::int16('Bold'));
+    }
+
     private function getHexPrefix(string $hexString): string
     {
         return str_pad(
