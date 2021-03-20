@@ -133,28 +133,30 @@ class PacketsTest extends TestCase
         self::assertSame(16706, Packets::int16('BA'));
     }
 
+
+
     public function test_u_int16_with_little_endian_packs_integer_into_hex_string()
     {
         $integer = 3245;
-        $expectedhexString = pack('v', $integer);
+        $expectedHexString = pack('v', $integer);
 
-        self::assertSame($expectedhexString, Packets::uInt16($integer));
+        self::assertSame($expectedHexString, Packets::uInt16($integer));
     }
 
     public function test_u_int16_with_big_endian_packs_integer_into_hex_string()
     {
         $integer = 3245;
-        $expectedhexString = pack('n', $integer);
+        $expectedHexString = pack('n', $integer);
 
-        self::assertSame($expectedhexString, Packets::uInt16($integer, true));
+        self::assertSame($expectedHexString, Packets::uInt16($integer, true));
     }
 
     public function test_u_int16_with__machine_byte_order_packs_integer_into_hex_string()
     {
         $integer = 3245;
-        $expectedhexString = pack('S', $integer);
+        $expectedHexString = pack('S', $integer);
 
-        self::assertSame($expectedhexString, Packets::uInt16($integer, null));
+        self::assertSame($expectedHexString, Packets::uInt16($integer, null));
     }
 
     public function test_u_int16_with_little_endian_unpacks_hex_string_into_integer()
