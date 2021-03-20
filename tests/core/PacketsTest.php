@@ -220,6 +220,52 @@ class PacketsTest extends TestCase
         self::assertSame(1094861636, Packets::uInt32($hexString, null));
     }
 
+    public function test_int64_packs_integer_into_hex_string()
+    {
+        self::assertSame('ABCDEFBA', Packets::int64(4702398224240165441));
+    }
+
+    public function test_u_int64_with_little_endian_packs_integer_into_hex_string()
+    {
+        $integer = 4702398224240165441;
+        $expectedHexString = pack('P', $integer);
+
+        self::assertSame($expectedHexString, Packets::uInt64($integer));
+    }
+
+    public function test_u_int64_with_big_endian_packs_integer_into_hex_string()
+    {
+        $integer = 4702398224240165441;
+        $expectedHexString = pack('J', $integer);
+
+        self::assertSame($expectedHexString, Packets::uInt64($integer, true));
+    }
+
+    public function test_u_int64_with__machine_byte_order_packs_integer_into_hex_string()
+    {
+        $integer = 4702398224240165441;
+        $expectedHexString = pack('Q', $integer);
+
+        self::assertSame($expectedHexString, Packets::uInt64($integer, null));
+    }
+
+    public function test_u_int64_with_little_endian_unpacks_hex_string_into_integer()
+    {
+        self::assertSame(4702398224240165441, Packets::uInt64('ABCDEFBA'));
+    }
+
+    public function test_u_int64_with_big_endian_unpacks_hex_string_into_integer()
+    {
+        self::assertSame(4702394921427288641, Packets::uInt64('ABCDEFBA', true));
+    }
+
+    public function test_u_int64_with_machine_byte_order_unpacks_hex_string_into_integer()
+    {
+        $hexString = pack("Q", 4702398224240165441);
+
+        self::assertSame(4702398224240165441, Packets::uInt64($hexString, null));
+    }
+
     private function getHexPrefix(string $hexString): string
     {
         return str_pad(
