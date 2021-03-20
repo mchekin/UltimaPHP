@@ -130,7 +130,7 @@ class PacketsTest extends TestCase
 
     public function test_int16_unpacks_hex_string_into_integer()
     {
-        self::assertSame(66, Packets::int8('B'));
+        self::assertSame(16706, Packets::int16('BA'));
     }
 
     public function test_u_int16_with_little_endian_packs_integer_into_hex_string()
@@ -176,6 +176,11 @@ class PacketsTest extends TestCase
         $hexString = pack("S", 16961);
 
         self::assertSame(16961, Packets::uInt16($hexString, null));
+    }
+
+    public function test_int32_packs_integer_into_hex_string()
+    {
+        self::assertSame('0102CFB0', Packets::int32(16961456));
     }
 
     private function getHexPrefix(string $hexString): string
