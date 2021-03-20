@@ -147,6 +147,28 @@ class PacketsTest extends TestCase
         self::assertSame("0000" . dechex($integer), $sut->getPacketStr());
     }
 
+    public function test_add_u_int_32()
+    {
+        $hexString = 'ABCD';
+
+        $sut = new Packets();
+
+        $sut->addUInt32($hexString);
+
+        self::assertSame("001145258561", $sut->getPacketStr());
+    }
+
+    public function test_add_int_32()
+    {
+        $integer = 1145258561;
+
+        $sut = new Packets();
+
+        $sut->addInt32($integer);
+
+        self::assertSame("00" . dechex($integer), $sut->getPacketStr());
+    }
+
     public function test_int8_packs_integer_into_hex_string()
     {
         self::assertSame('20', Packets::int8(32));
